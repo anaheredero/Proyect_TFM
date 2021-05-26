@@ -2,8 +2,9 @@
 
 # Introduction
 An open-source pipeline to detect germline variants from whole genome and whole exome sequencing.
+This workflow was design using ([`Sarek`](https://github.com/nf-core/sarek)), a **nf-core** community pipeline, created to aim the same objective as ours, and the recommendations of the Best Practices guide from GATK.
 
-This pipeline 
+Sarek pipeline is built using [`Nextflow`](https://www.nextflow.io/), a workflow tool to run tasks across multiple compute infrastructures in a very portable manner.
 
 # Pipeline summary
 1. Sequencing quality control ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
