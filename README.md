@@ -1,10 +1,13 @@
 <img src="assets/BU_ISCIII_logo.png" alt="logo" width="300" align="right"/>
 
+[![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A519.10.0-brightgreen.svg)](https://www.nextflow.io/)
+
 # Introduction
 An open-source pipeline to detect germline variants from whole genome and whole exome sequencing.
-This workflow was design using ([`Sarek`](https://github.com/nf-core/sarek)), a **nf-core** community pipeline, created to aim the same objective as ours, and the recommendations of the Best Practices guide from GATK.
+This workflow was design using [`Sarek`](https://github.com/nf-core/sarek), a **nf-core** community pipeline, created to aim the same objective as ours, and the recommendations of the Best Practices guide from GATK and literature related to this topic.
 
-Sarek pipeline is built using [`Nextflow`](https://www.nextflow.io/), a workflow tool to run tasks across multiple compute infrastructures in a very portable manner.
+Sarek pipeline is built using [`Nextflow`](https://www.nextflow.io/), a workflow tool to run tasks across multiple compute infrastructures in a very portable, scalable and reproducible manner. We used this workflow for the first steps, regarding: preprocessing and variant calling (just HaplotypeCaller in GVCF mode).
+Further steps were carried out by our own, following GATK Best Practices for short variants discovery.
 
 # Pipeline summary
 1. Sequencing quality control ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
