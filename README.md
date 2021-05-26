@@ -16,8 +16,8 @@ Further steps were carried out by our own, following GATK Best Practices for sho
 4. Base (Quality Score) Recalibration ([`GATK BaseRecalibrator`], [`GATK ApplyBQSR`])
 5. Joint Variant Calling and post-processing
     5.1. SNPs/InDels ([`HaplotypeCaller --GVCF`])
-        5.1.1.  Joint genotyping ([`GATK CombineGVCFs`], [`GATK GenotypeGVCFs`]) 
-        5.1.2.  Quality hard-filtering ([`GATK SelectVariants`], [`GATK VariantFiltration`], [`GATK MergeVcfs`] (https://gatk.broadinstitute.org/hc/en-us/articles/360035531112--How-to-Filter-variants-either-with-VQSR-or-by-hard-filtering))
+    	5.1.1.	Joint genotyping ([`GATK CombineGVCFs`], [`GATK GenotypeGVCFs`]) 
+        5.1.2.  Quality hard-filtering ([`GATK SelectVariants`](https://gatk.broadinstitute.org/hc/en-us/articles/360035531112--How-to-Filter-variants-either-with-VQSR-or-by-hard-filtering), [`GATK VariantFiltration`](https://gatk.broadinstitute.org/hc/en-us/articles/360035531112--How-to-Filter-variants-either-with-VQSR-or-by-hard-filtering), [`GATK MergeVcfs`](https://gatk.broadinstitute.org/hc/en-us/articles/360035531112--How-to-Filter-variants-either-with-VQSR-or-by-hard-filtering))
     5.2. SVs ([`Manta`](https://github.com/Illumina/manta/blob/master/docs/userGuide/README.md))
         5.2.1.  Inversion conversion ([`Manta - convertInversions.py`](https://github.com/Illumina/manta/blob/master/docs/userGuide/README.md#inversions)
 6. Annotation
