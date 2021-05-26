@@ -1,4 +1,4 @@
-<img src="assets/BU_ISCIII_logo.png" alt="logo" width="300" align="right"/>
+<img src="/BU_ISCIII_logo.png" alt="logo" width="300" align="right"/>
 
 [![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A519.10.0-brightgreen.svg)](https://www.nextflow.io/)
 
