@@ -11,9 +11,9 @@ Sarek pipeline is built using [`Nextflow`](https://www.nextflow.io/), a workflow
 Further steps were carried out by our own, following GATK Best Practices for short variants discovery.
 
 This pipeline consists of 3 main steps (preprocessing being tuned up):\
-**01-sarek**, which involves quality test, mapping and variant calling (just HaplotypeCaller in GVCF mode).\
-**02-postprocessing**, which involves joint genotyping and variant quality filtering for SNPs and in/dels and joint call and conversion of inversions, for SVs.\
-**03-annot**, where SNPs and in/dels and SVs are annotated.
+* **01-sarek**, which involves quality test, mapping and variant calling (just HaplotypeCaller in GVCF mode).\
+* **02-postprocessing**, which involves joint genotyping and variant quality filtering for SNPs and in/dels and joint call and conversion of inversions, for SVs.\
+* **03-annot**, where SNPs and in/dels and SVs are annotated.
 
 # Pipeline summary
 1. Sequencing quality control ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
