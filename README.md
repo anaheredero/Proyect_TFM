@@ -10,6 +10,11 @@ This workflow was design using [`Sarek`](https://github.com/nf-core/sarek), a **
 Sarek pipeline is built using [`Nextflow`](https://www.nextflow.io/), a workflow tool to run tasks across multiple compute infrastructures in a very portable, scalable and reproducible manner. We used this workflow for the first steps, regarding: preprocessing and variant calling (just HaplotypeCaller in GVCF mode).
 Further steps were carried out by our own, following GATK Best Practices for short variants discovery.
 
+This pipeline consists of 3 main steps (preprocessing being tuned up):\
+**01-sarek**, which involves quality test, mapping and variant calling (just HaplotypeCaller in GVCF mode).\
+**02-postprocessing**, which involves joint genotyping and variant quality filtering for SNPs and in/dels and joint call and conversion of inversions, for SVs.\
+**03-annot**, where SNPs and in/dels and SVs are annotated.
+
 # Pipeline summary
 1. Sequencing quality control ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
 2. Map read to reference ([`BWA-mem`])
