@@ -35,6 +35,7 @@ BU-ISCIII currently implements its pipelines using nextflow and singularity; how
 * **00-reads**: we use this folder as starting point for our analysis. It is useful for simplify posterior steps to rename fastq files to just `{sample_name}_R{1,2}.fastq.gz`. As we don't want to rename the original files we use this folder to make symbolic links with the new names. We can use this command for this, locate yourself inside 00-reads for easier use of ln command:
 
     `cat ../samples_id.txt | xargs -I % echo "ln -s ../../RAW/%_*R1*.fastq.gz" %_R1.fastq.gz" | bash`
+    
     `cat ../samples_id.txt | xargs -I % echo "ln -s ../../RAW/%_*R2*.fastq.gz" %_R2.fastq.gz" | bash`
 
 * **01-preprocessing, 02-sarek, 03-postprocessing_variants, 04-postprocessing_svs, 05-annot_variants, 06-annot_svs**: next steps of the pipeline will follow having each one its own folder. Each folder must have a **lablog** file and the **scripts** needed for regenerate the results stored in that folder. Also a logs folder is created where all generated logs are stored.
@@ -44,19 +45,26 @@ BU-ISCIII currently implements its pipelines using nextflow and singularity; how
 Imagine **samples_id.txt** looks like this:
 
 `sample1`
+
 `sample2`
+
 `sample3`
 
 lablog file inside 01-fastQC folder would look like this:
 `## This line iterates using samples_id.txt file and executes the xargs part one time per line in the samples_id.txt file. In each iteration "%" works as a variable that contains each value in each line (sample1, sample2,...)`
+
 `cat ../samples_id.txt | xargs -I % echo "mkdir %;fastqc -o % ../00-reads/%_R1.fastq.gz ../00-reads/%_R2.fastq.gz" >> _00_rawfastqc.sh`
+
 `## If you feel more confortable with traditional loops the equivalent way using while would be:`
+
 `cat ../samples_id.txt | while read in; do echo "mkdir "$in";fastqc -o "$in" ../00-reads/"$in"_R1.fastq.gz ../00-reads/"$in"_R2.fastq.gz"; done >> _00_rawfastqc.sh`
 
 When we execute lablog file: bash lablog we generate two scripts that will look like this: **_00_rawfastqc.sh**
 
 `mkdir sample1;fastqc -o sample1 ../00-reads/sample1_R1.fastq.gz ../00-reads/sample1_R2.fastq.gz`
+
 `mkdir sample2;fastqc -o sample2 ../00-reads/sample2_R1.fastq.gz ../00-reads/sample2_R2.fastq.gz`
+
 `mkdir sample3;fastqc -o sample3 ../00-reads/sample3_R1.fastq.gz ../00-reads/sample3_R2.fastq.gz`
 
 
