@@ -25,3 +25,13 @@ Further steps were carried out by our own, following GATK Best Practices for sho
     1. SNPs/InDels ([`VEP --plugin dbNSFP4.1a`](https://www.ensembl.org/info/docs/tools/vep/index.html))
     2. SVs ([`AnnotSV`](https://lbgi.fr/AnnotSV/))
 7. Overall pipeline run summaries ([`MultiQC`](https://multiqc.info/))
+
+# Pipeline execution guidelines
+BU-ISCIII currently implements its pipelines using nextflow and singularity; however some of our pipelines are not migrated yet or some specific analysis don't have the enough entity to make a automatic pipeline (for example while we are testing something). In these cases we use a standardized organization for the analysis in order to be able to understand an replicate the execution and follow the results.
+    - *samples_id.txt file*: contains the sample identifiers for all the samples being analyzed in the project. Usually sample names are included in the fastq files with this format: [`{sample_name}_S45_R1_001.fastq.gz`]. One easy way for setting samples_id.txt file is locating yourself in ANALYSIS folder and executing:
+    [`find ../RAW_NC -name "*.fastq.gz" | cut -d "/" -f 3 | cut -d "_" -f 1 | sort -u > samples_id.txt
+`]
+    - *00-reads*: we use this folder as starting point for our analysis. It is useful for simplify posterior steps to rename fastq files to just [`{sample_name}_R{1,2}.fastq.gz`]. As we don't want to rename the original files we use this folder to make symbolic links with the new names. We can use this command for this, locate yourself inside 00-reads for easier use of ln command:
+    [`cat ../samples_id.txt | xargs -I % echo "ln -s ../../RAW/%_*R1*.fastq.gz" %_R1.fastq.gz" | bash`]
+    [`cat ../samples_id.txt | xargs -I % echo "ln -s ../../RAW/%_*R2*.fastq.gz" %_R2.fastq.gz" | bash`]
+    - *01-sarek*: 
