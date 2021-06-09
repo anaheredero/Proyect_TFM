@@ -41,18 +41,20 @@ BU-ISCIII currently implements its pipelines using nextflow and singularity; how
 
 * **lablog**: this file is located in each folder of the analysis, it indicates the commands that must be run for replicate the results found in its folder. Most of the times lablog does not contain the commands for running the analysis, instead it runs commands for generating the necessary scripts for performing the analysis. For example necessary orders for iterating among all the samples in the analysis will be set in this file. And of course it will describe all the steps needed for the analysis. Let's see an example, iamgine a lablog file contained in 01-fastQC folder will contain the fastqc command for all the samples in the project.
 
-Imagine samples_id.txt looks like this:
+Imagine **samples_id.txt** looks like this:
+
 `sample1`
 `sample2`
 `sample3`
 
 lablog file inside 01-fastQC folder would look like this:
-`## This line iterates using samples_id.txt file and executes the xargs part one time per line in the samples_id.txt file. In each iteration "%" works as a variable that contains each value in each line (sample1, sample2,...)
-cat ../samples_id.txt | xargs -I % echo "mkdir %;fastqc -o % ../00-reads/%_R1.fastq.gz ../00-reads/%_R2.fastq.gz" >> _00_rawfastqc.sh
-## If you feel more confortable with traditional loops the equivalent way using while would be:
-cat ../samples_id.txt | while read in; do echo "mkdir "$in";fastqc -o "$in" ../00-reads/"$in"_R1.fastq.gz ../00-reads/"$in"_R2.fastq.gz"; done >> _00_rawfastqc.sh`
+`## This line iterates using samples_id.txt file and executes the xargs part one time per line in the samples_id.txt file. In each iteration "%" works as a variable that contains each value in each line (sample1, sample2,...)`
+`cat ../samples_id.txt | xargs -I % echo "mkdir %;fastqc -o % ../00-reads/%_R1.fastq.gz ../00-reads/%_R2.fastq.gz" >> _00_rawfastqc.sh`
+`## If you feel more confortable with traditional loops the equivalent way using while would be:`
+`cat ../samples_id.txt | while read in; do echo "mkdir "$in";fastqc -o "$in" ../00-reads/"$in"_R1.fastq.gz ../00-reads/"$in"_R2.fastq.gz"; done >> _00_rawfastqc.sh`
 
 When we execute lablog file: bash lablog we generate two scripts that will look like this: **_00_rawfastqc.sh**
+
 `mkdir sample1;fastqc -o sample1 ../00-reads/sample1_R1.fastq.gz ../00-reads/sample1_R2.fastq.gz`
 `mkdir sample2;fastqc -o sample2 ../00-reads/sample2_R1.fastq.gz ../00-reads/sample2_R2.fastq.gz`
 `mkdir sample3;fastqc -o sample3 ../00-reads/sample3_R1.fastq.gz ../00-reads/sample3_R2.fastq.gz`
