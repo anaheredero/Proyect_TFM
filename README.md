@@ -15,7 +15,7 @@ This pipeline consists of 3 main steps (preprocessing being tuned up):
 * **02-postprocessing**, which involves joint genotyping and variant quality filtering for SNPs and in/dels and joint call and conversion of inversions, for SVs.
 * **03-annot**, where SNPs and in/dels and SVs are annotated.
 
-<img src="/pipeline_image.png" width="300" />
+<img src="/pipeline_image.png" width="500" height="500" align="center"/>
 
 # Pipeline summary
 1. Sequencing quality control ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
